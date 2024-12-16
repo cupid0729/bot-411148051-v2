@@ -43,31 +43,21 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message = text=event.message.text
-    if re.match('告訴我秘密',message):
-        buttons_template_message = TemplateSendMessage(
-        alt_text='這是樣板傳送訊息',
-        template=ButtonsTemplate(
-            thumbnail_image_url='https://i.imgur.com/kNBl363.jpg',
-            title='中華民國',
-            text='選單功能－TemplateSendMessage',
-            actions=[
-                PostbackAction(
-                    label='這是PostbackAction',
-                    display_text='顯示文字',
-                    data='實際資料'
-                ),
-                MessageAction(
-                    label='這是MessageAction',
-                    text='實際資料'
-                ),
-                URIAction(
-                    label='這是URIAction',
-                    uri='https://en.wikipedia.org/wiki/Taiwan'
-                )
-            ]
-        )
-    )
-        line_bot_api.reply_message(event.reply_token, buttons_template_message)
+    if re.match('我想吃飯',message):
+        flex_message = TextSendMessage(text='請點選您想去的國家',
+                               quick_reply=QuickReply(items=[
+                                   QuickReplyButton(action=MessageAction(label="牛肉麵", text="牛肉麵")),
+                                   QuickReplyButton(action=MessageAction(label="牛肉飯", text="牛肉飯")),
+                                   QuickReplyButton(action=MessageAction(label="貢丸湯", text="貢丸湯")),
+                                   QuickReplyButton(action=MessageAction(label="虱目魚湯", text="虱目魚湯")),
+                                   QuickReplyButton(action=MessageAction(label="紅茶", text="紅茶")),
+                                   QuickReplyButton(action=MessageAction(label="綠茶", text="綠茶"))
+                               ]))
+        line_bot_api.reply_message(event.reply_token, flex_message)
+    elif message in ["牛肉麵", "牛肉飯", "貢丸湯","虱目魚湯", "紅茶", "綠茶"]:
+        # 回應用戶選擇的選項
+        reply_text = f"您已成功將【{message}】加入購物車。"
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=reply_text))
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(message))
 #主程式
