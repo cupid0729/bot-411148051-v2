@@ -43,44 +43,44 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message = text=event.message.text
-    if re.match('電影推薦', message):
-        # 使用 ImageCarouselTemplate 展示電影資訊
-        image_carousel_template_message = TemplateSendMessage(
-            alt_text='電影推薦 - 請使用手機查看完整內容',
-            template=ImageCarouselTemplate(
-                columns=[
-                    ImageCarouselColumn(
-                        image_url='https://i.imgur.com/1IrjFiU.jpg',  # 電影1封面
-                        action=MessageAction(
-                            label='《音速小子3》',
-                            text='《音速小子3》\n簡介：《音速小子》第三集，導演傑夫福勒再度回歸執導這部全新電影，演員則包括金凱瑞、班許瓦茲、詹姆斯馬斯登、蒂卡桑普特、伊卓瑞斯艾巴、柯琳歐尚納希、娜塔莎羅斯威爾、薛馬摩爾、亞當帕利、李小氣、艾莉拉布朗與克萊斯汀瑞特，以及第一次加入這個系列的基努李維，他為夏特這個全新角色配音。音速小子即將展開一場至今最精彩刺激的冒險旅程，索尼克、納克魯斯和塔爾斯再度合作，共同對抗一個力量強大的全新敵人，夏特，一個神祕的大壞蛋，擁有他們從未面對過的強大力量。當他們發現他們的每一種能力都比不上這個大壞蛋的時候，索尼克小隊就必須找來一個沒有人會想到的盟友，希望能夠幫助他們阻止夏特，並且保護地球的安全。\n上映日期：2024年12月27日'
+        if re.match('電影推薦', message):
+        try:
+            image_carousel_template_message = TemplateSendMessage(
+                alt_text='電影推薦 - 請使用手機查看完整內容',
+                template=ImageCarouselTemplate(
+                    columns=[
+                        ImageCarouselColumn(
+                            image_url='https://i.imgur.com/1IrjFiU.jpg',
+                            action=MessageAction(
+                                label='《音速小子3》',
+                                text='《音速小子3》\n簡介：全新冒險故事...\n上映日期：2024年12月27日'
+                            )
+                        ),
+                        ImageCarouselColumn(
+                            image_url='https://i.imgur.com/tNg1THs.jpg',
+                            action=MessageAction(
+                                label='《進擊的巨人 完結篇》',
+                                text='《進擊的巨人》最終戰役，震撼登場！\n上映日期：2025年1月03日'
+                            )
+                        ),
+                        ImageCarouselColumn(
+                            image_url='https://i.imgur.com/uzMQqMT.jpg',
+                            action=MessageAction(
+                                label='《來福大酒店》',
+                                text='《來福大酒店》感人故事，歡笑與淚水交織...\n上映日期：2025年1月10日'
+                            )
+                        ),
+                        ImageCarouselColumn(
+                            image_url='https://i.imgur.com/1IYbSsZ.jpg',
+                            action=MessageAction(
+                                label='《巴布狄倫：搖滾詩人》',
+                                text='搖滾巨星的傳奇旅程！\n上映日期：2025年1月24日'
+                            )
                         )
-                    ),
-                    ImageCarouselColumn(
-                        image_url='https://i.imgur.com/tNg1THs.jpg',  # 電影2封面
-                        action=MessageAction(
-                            label='《劇場版「進擊的巨人」完結篇THE LAST ATTACK》',
-                            text='《劇場版「進擊的巨人」完結篇THE LAST ATTACK》\n簡介：人類為了躲避巨人威脅而建築高聳巨大城牆，躲在城牆中過著苟且偷生的日子。一天，超大型巨人來襲打破了歷經百年的和平日常，紛亂中失去母親的少年艾連・葉卡自此發誓要驅逐所有巨人，成為與巨人戰鬥的調查軍團的一員。在幾番賭命的險惡戰鬥中，艾倫得到化身為巨人的能力，一邊為人類的勝利做出貢獻，逐步慢慢接近世界的真相。時光流逝，來到牆外世界的艾連選擇與調查軍團的伙伴們分道揚鑣，執行一個驚世駭俗的恐怖計畫。率領無數巨人將這個世界上所有能稱之為生命的生命盡數蹂躪的「地鳴」。以米卡莎和阿爾敏為首的倖存者們，為了阻止意圖毀滅世界的艾倫，挺身挑戰最後的戰役。\n上映日期：2025年1月03日'
-                        )
-                    ),
-                    ImageCarouselColumn(
-                        image_url='https://i.imgur.com/uzMQqMT.jpg',  # 電影3封面
-                        action=MessageAction(
-                            label='《來福大酒店》',
-                            text='《來福大酒店》\n簡介：故事圍繞在一家名為「來福大酒店」的特殊旅館展開,這裡不僅提供住宿,更是一個「病友之家」,為病患和他們的家屬提供了一個可以陪伴看病、幫忙拿藥、協助問診的避風港。在這裡,一群與命運抗爭的陌生人相遇,彼此間發生了一系列溫暖而治癒的故事。 昔日的“街頭浪子”李清讓(黃軒 飾)出獄後就業接連碰壁,卻偶然與舊識王達基(董寶石 飾)相遇,在王達基的慫恿利誘之下,他抱著某種陰謀入職「病友之家」, 這其中隱藏著什麼不為人知的交易?又會和來福大酒店潑辣老闆娘(柳岩 飾)碰撞出怎樣驚心動魄的故事?隨著陰謀與衝突不斷浮現,一邊是朝夕相處勝似家人的病友們,一邊是舊識拋來的賺錢橄欖枝,他究竟該何去何從,來福大酒店又能否化險為夷......\n上映日期：2025年1月10日'
-                        )
-                    ),
-                    ImageCarouselColumn(
-                        image_url='https://i.imgur.com/1IYbSsZ.jpg',  # 電影4封面
-                        action=MessageAction(
-                            label='《巴布狄倫：搖滾詩人》',
-                            text='《巴布狄倫：搖滾詩人》\n簡介：影片以充滿活力的音樂圈和動盪的文化劇變為背景，一個神祕的19歲男孩帶著吉他和非同小可的才華，從明尼蘇達來到紐約西村，注定要改變美國音樂的軌跡。隨著在成名過程中建立起最親密的關係，民謠音樂的變化也逐漸令他感到躁動不安，並且拒絕被定義，最後做出一個極具爭議的選擇，為全球文化帶來顛覆性的影響。\n上映日期：2025年1月24日'
-                        )
-                    )
-                ]
+                    ]
+                )
             )
-        )
-        line_bot_api.reply_message(event.reply_token, image_carousel_template_message)
+            line_bot_api.reply_message(event.reply_token, image_carousel_template_message)
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(message))
 #主程式
