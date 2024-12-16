@@ -44,7 +44,7 @@ def callback():
 def handle_message(event):
     message = text=event.message.text
     if re.match('我想吃飯',message):
-        flex_message = TextSendMessage(text='請點選您想去的國家',
+        flex_message = TextSendMessage(text='請點選您想要的餐點',
                                quick_reply=QuickReply(items=[
                                    QuickReplyButton(action=MessageAction(label="牛肉麵", text="牛肉麵")),
                                    QuickReplyButton(action=MessageAction(label="牛肉飯", text="牛肉飯")),
