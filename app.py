@@ -43,41 +43,25 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message = text=event.message.text
-    if re.match('電影推薦',message):
+    if re.match('告訴我秘密',message):
         image_carousel_template_message = TemplateSendMessage(
             alt_text='這是TemplateSendMessage',
             template=ImageCarouselTemplate(
                 columns=[
                     ImageCarouselColumn(
-                        image_url='https://i.imgur.com/1IrjFiU.jpg',
+                        image_url='https://i.imgur.com/kNBl363.jpg',
                         action=PostbackAction(
-                            label='《音速小子3》',
-                            display_text='《音速小子3》\n上映日期：2024年12月27日',
+                            label='台灣',
+                            display_text='台北101、逢甲夜市、墾丁...',
                             data='action=001'
                         )
                     ),
                     ImageCarouselColumn(
-                        image_url='https://i.imgur.com/tNg1THs.jpg',
+                        image_url='https://i.imgur.com/GBPcUEP.png',
                         action=PostbackAction(
-                            label='《劇場版「進擊的巨人」完結篇THE LAST ATTACK》',
-                            display_text='《劇場版「進擊的巨人」完結篇THE LAST ATTACK》\n上映日期：2025年1月03日',
+                            label='日本',
+                            display_text='金閣寺、淺草寺、北海道...',
                             data='action=002'
-                        )
-                    ),
-                    ImageCarouselColumn(
-                        image_url='https://i.imgur.com/uzMQqMT.jpg',
-                        action=PostbackAction(
-                            label='《來福大酒店》',
-                            display_text='《來福大酒店》\n上映日期：2025年1月10日',
-                            data='action=003'
-                        )
-                    ),
-                    ImageCarouselColumn(
-                        image_url='https://i.imgur.com/1IYbSsZ.jpg',
-                        action=PostbackAction(
-                            label='《巴布狄倫：搖滾詩人》',
-                            display_text='《巴布狄倫：搖滾詩人》\n上映日期：2025年1月24日',
-                            data='action=004'
                         )
                     )
                 ]
