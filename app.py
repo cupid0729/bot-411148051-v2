@@ -42,61 +42,182 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message = event.message.text
-    if re.match('電影推薦', message):
-        carousel_template_message = TemplateSendMessage(
-            alt_text='電影推薦',
-            template=CarouselTemplate(
-                columns=[
-                    CarouselColumn(
-                        thumbnail_image_url='https://i.imgur.com/1IrjFiU.jpg',
-                        title='《音速小子3》',
-                        text='上映日期：2024年12月27日',
-                        actions=[
-                            URIAction(
-                                label='查看詳細資訊',
-                                uri='https://www.vscinemas.com.tw/vsweb/film/detail.aspx?id=7635'
-                            )
-                        ]
-                    ),
-                    CarouselColumn(
-                        thumbnail_image_url='https://i.imgur.com/tNg1THs.jpg',
-                        title='《劇場版「進擊的巨人」完結篇THE LAST ATTACK》',
-                        text='上映日期：2025年1月03日',
-                        actions=[
-                            URIAction(
-                                label='查看詳細資訊',
-                                uri='https://www.vscinemas.com.tw/vsweb/film/detail.aspx?id=7645'
-                            )
-                        ]
-                    ),
-                    CarouselColumn(
-                        thumbnail_image_url='https://i.imgur.com/uzMQqMT.jpg',
-                        title='《來福大酒店》',
-                        text='上映日期：2025年1月10日',
-                        actions=[
-                            URIAction(
-                                label='查看詳細資訊',
-                                uri='https://www.vscinemas.com.tw/vsweb/film/detail.aspx?id=7626'
-                            )
-                        ]
-                    ),
-                    CarouselColumn(
-                        thumbnail_image_url='https://i.imgur.com/1IYbSsZ.jpg',
-                        title='《巴布狄倫：搖滾詩人》',
-                        text='上映日期：2025年1月24日',
-                        actions=[
-                            URIAction(
-                                label='查看詳細資訊',
-                                uri='https://www.vscinemas.com.tw/vsweb/film/detail.aspx?id=7646'
-                            )
-                        ]
-                    )
+    if re.match('查看菜單', message):
+        flex_message = FlexSendMessage(
+            alt_text='餐廳菜單推薦',
+            contents={
+                "type": "carousel",
+                "contents": [
+                    {
+                        "type": "bubble",
+                        "hero": {
+                            "type": "image",
+                            "url": "https://i.imgur.com/8kF9yi5.jpg",
+                            "size": "full",
+                            "aspectRatio": "20:13",
+                            "aspectMode": "cover"
+                        },
+                        "body": {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                                {
+                                    "type": "text",
+                                    "text": "沙朗牛排",
+                                    "weight": "bold",
+                                    "size": "xl"
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "油花不多，有少許嫩筋，利用水果本身自然酵素嫩化肉質",
+                                    "wrap": True,
+                                    "color": "#666666",
+                                    "size": "sm"
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "價格: NT 180",
+                                    "color": "#333333",
+                                    "size": "md"
+                                }
+                            ]
+                        },
+                        "footer": {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                                {
+                                    "type": "button",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "訂購",
+                                        "data": "action=order&item=沙朗牛排"
+                                    },
+                                    "style": "primary",
+                                    "color": "#905c44"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "type": "bubble",
+                        "hero": {
+                            "type": "image",
+                             "url": "https://i.imgur.com/4xDGvls.jpg",
+                            "size": "full",
+                            "aspectRatio": "20:13",
+                            "aspectMode": "cover"
+                        },
+                        "body": {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                                {
+                                    "type": "text",
+                                    "text": "豬排",
+                                    "weight": "bold",
+                                    "size": "xl"
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "新鮮溫體豬，利用水果本身自然酵素嫩化肉質",
+                                    "wrap": True,
+                                    "color": "#666666",
+                                    "size": "sm"
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "價格: NT 170",
+                                    "color": "#333333",
+                                    "size": "md"
+                                }
+                            ]
+                        },
+                        "footer": {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                                {
+                                    "type": "button",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "訂購",
+                                        "data": "action=order&item=豬排"
+                                    },
+                                    "style": "primary",
+                                    "color": "#905c44"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "type": "bubble",
+                        "hero": {
+                            "type": "image",
+                             "url": "https://i.imgur.com/qM7t8Lm.jpg",
+                            "size": "full",
+                            "aspectRatio": "20:13",
+                            "aspectMode": "cover"
+                        },
+                        "body": {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                                {
+                                    "type": "text",
+                                    "text": "香煎雞腿排",
+                                    "weight": "bold",
+                                    "size": "xl"
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "新鮮溫體雞肉，酥脆甜嫩中散發淡淡義式香料味",
+                                    "wrap": True,
+                                    "color": "#666666",
+                                    "size": "sm"
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "價格: NT 190",
+                                    "color": "#333333",
+                                    "size": "md"
+                                }
+                            ]
+                        },
+                        "footer": {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                                {
+                                    "type": "button",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "訂購",
+                                        "data": "action=order&item=香煎雞腿排"
+                                    },
+                                    "style": "primary",
+                                    "color": "#905c44"
+                                }
+                            ]
+                        }
+                    }
                 ]
-            )
+            }
         )
-        line_bot_api.reply_message(event.reply_token, carousel_template_message)
+        line_bot_api.reply_message(event.reply_token, flex_message)
     else:
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(message))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text="請輸入有效的指令"))
+
+@handler.add(PostbackEvent)
+def handle_postback(event):
+    data = event.postback.data
+    if "action=order" in data:
+        item = data.split("&item=")[1]
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=f"已成功將「{item}」加入購物車！")
+        )
+
 #主程式
 import os
 if __name__ == "__main__":
