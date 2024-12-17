@@ -43,7 +43,7 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message = text=event.message.text
-    if re.match('推薦電影',message):
+    if re.match('告訴我秘密',message):
         image_carousel_template_message = TemplateSendMessage(
             alt_text='這是TemplateSendMessage',
             template=ImageCarouselTemplate(
