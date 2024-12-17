@@ -43,7 +43,7 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message = text=event.message.text
-    if re.match('告訴我秘密',message):
+    if re.match('推薦電影',message):
         image_carousel_template_message = TemplateSendMessage(
             alt_text='這是TemplateSendMessage',
             template=ImageCarouselTemplate(
@@ -62,22 +62,6 @@ def handle_message(event):
                             label='《劇場版「進擊的巨人」完結篇THE LAST ATTACK》',
                             display_text='上映日期：2025年1月03日',
                             data='action=002'
-                        )
-                    ),
-                    ImageCarouselColumn(
-                        image_url='https://i.imgur.com/uzMQqMT.jpg',
-                        action=PostbackAction(
-                            label='《來福大酒店》',
-                            display_text='上映日期：2025年1月10日',
-                            data='action=003'
-                        )
-                    ),
-                    ImageCarouselColumn(
-                        image_url='https://i.imgur.com/1IYbSsZ.jpg',
-                        action=PostbackAction(
-                            label='《巴布狄倫：搖滾詩人》',
-                            display_text='上映日期：2025年1月24日',
-                            data='action=004'
                         )
                     )
                 ]
