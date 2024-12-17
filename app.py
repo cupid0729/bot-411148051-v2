@@ -29,38 +29,6 @@ def callback():
     # get request body as text
     body = request.get_data(as_text=True)
     app.logger.info("Request body: " + body)
-#訊息傳遞區塊
-##### 基本上程式編輯都在這個function #####
-@handler.add(MessageEvent, message=TextMessage)
-def handle_message(event):
-    message = text=event.message.text
-    if re.match('推薦電影',message):
-        image_carousel_template_message = TemplateSendMessage(
-            alt_text='這是推薦電影',
-            template=ImageCarouselTemplate(
-                columns=[
-                    ImageCarouselColumn(
-                        image_url='https://i.imgur.com/5zhmdgr.jpg',
-                        action=PostbackAction(
-                            label='《音速小子3》',
-                            display_text='上映日期：2024年12月27日',
-                            data='action=001'
-                        )
-                    ),
-                    ImageCarouselColumn(
-                        image_url='https://i.imgur.com/7Kr6EEr.jpg',
-                        action=PostbackAction(
-                            label='《劇場版「進擊的巨人」完結篇THE LAST ATTACK》',
-                            display_text='上映日期：2025年1月03日',
-                            data='action=002'
-                        )
-                    )
-                ]
-            )
-        )
-        line_bot_api.reply_message(event.reply_token, image_carousel_template_message)
-    else:
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(message))
     # handle webhook body
     try:
         handler.handle(body, signature)
@@ -69,7 +37,66 @@ def handle_message(event):
 
     return 'OK'
 
-
+#訊息傳遞區塊
+##### 基本上程式編輯都在這個function #####
+@handler.add(MessageEvent, message=TextMessage)
+def handle_message(event):
+    message = event.message.text
+    if re.match('電影推薦', message):
+        carousel_template_message = TemplateSendMessage(
+            alt_text='電影推薦',
+            template=CarouselTemplate(
+                columns=[
+                    CarouselColumn(
+                        thumbnail_image_url='https://i.imgur.com/1IrjFiU.jpg',
+                        title='《音速小子3》',
+                        text='上映日期：2024年12月27日',
+                        actions=[
+                            URIAction(
+                                label='查看詳細資訊',
+                                uri='https://www.vscinemas.com.tw/vsweb/film/detail.aspx?id=7635'
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url='https://i.imgur.com/tNg1THs.jpg',
+                        title='《劇場版「進擊的巨人」完結篇THE LAST ATTACK》',
+                        text='上映日期：2025年1月03日',
+                        actions=[
+                            URIAction(
+                                label='查看詳細資訊',
+                                uri='https://www.vscinemas.com.tw/vsweb/film/detail.aspx?id=7645'
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url='https://i.imgur.com/uzMQqMT.jpg',
+                        title='《來福大酒店》',
+                        text='上映日期：2025年1月10日',
+                        actions=[
+                            URIAction(
+                                label='查看詳細資訊',
+                                uri='https://www.vscinemas.com.tw/vsweb/film/detail.aspx?id=7626'
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url='https://i.imgur.com/1IYbSsZ.jpg',
+                        title='《巴布狄倫：搖滾詩人》',
+                        text='上映日期：2025年1月24日',
+                        actions=[
+                            URIAction(
+                                label='查看詳細資訊',
+                                uri='https://www.vscinemas.com.tw/vsweb/film/detail.aspx?id=7646'
+                            )
+                        ]
+                    )
+                ]
+            )
+        )
+        line_bot_api.reply_message(event.reply_token, carousel_template_message)
+    else:
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(message))
 #主程式
 import os
 if __name__ == "__main__":
