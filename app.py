@@ -49,19 +49,35 @@ def handle_message(event):
             template=ImageCarouselTemplate(
                 columns=[
                     ImageCarouselColumn(
-                        image_url='https://i.imgur.com/kNBl363.jpg',
+                        image_url='https://i.imgur.com/1IrjFiU.jpg',
                         action=PostbackAction(
-                            label='台灣',
-                            display_text='台北101、逢甲夜市、墾丁...',
+                            label='《音速小子3》',
+                            display_text='上映日期：2024年12月27日',
                             data='action=001'
                         )
                     ),
                     ImageCarouselColumn(
-                        image_url='https://i.imgur.com/GBPcUEP.png',
+                        image_url='https://i.imgur.com/tNg1THs.jpg',
                         action=PostbackAction(
-                            label='日本',
-                            display_text='金閣寺、淺草寺、北海道...',
+                            label='《劇場版「進擊的巨人」完結篇THE LAST ATTACK》',
+                            display_text='上映日期：2025年1月03日',
                             data='action=002'
+                        )
+                    ),
+                    ImageCarouselColumn(
+                        image_url='https://i.imgur.com/uzMQqMT.jpg',
+                        action=PostbackAction(
+                            label='《來福大酒店》',
+                            display_text='上映日期：2025年1月10日',
+                            data='action=003'
+                        )
+                    ),
+                    ImageCarouselColumn(
+                        image_url='https://i.imgur.com/1IYbSsZ.jpg',
+                        action=PostbackAction(
+                            label='《巴布狄倫：搖滾詩人》',
+                            display_text='上映日期：2025年1月24日',
+                            data='action=004'
                         )
                     )
                 ]
